@@ -36,20 +36,48 @@ function installDependency
 
     echo "Updating indexes to install latest versions......"
     sudo apt-get update
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe APT repository couldn't update.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
 
     echo "Installing dependencies for ghdl-0.36 LLVM......."
     echo "Installing make.................................."
     sudo apt-get install -y make
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe make dependency couldn't be install.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
     echo "Installing gnat-5................................"
     sudo apt-get install -y gnat-5
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe gnat-5 dependency couldn't be install.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
     echo "Installing llvm.................................."
     sudo apt-get install -y llvm
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe llvm dependency couldn't be install.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
     echo "Installing clang................................."
     sudo apt-get install -y clang
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe clang dependency couldn't be install.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
     echo "Installing zlib1g-dev............................"
     sudo apt-get install -y zlib1g-dev
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe zlib1g-dev dependency couldn't be install.\nKindly resolve above APT repository errors and try again"
+        exit 1
+    fi
     echo "Installing xterm................................."
     sudo apt-get install -y xterm
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe xterm dependency couldn't be install.\nKindly resolve above APT repository errors and try again."
+        exit 1
+    fi
 
     echo "Installing ghdl.................................."
     grep -h "ghdl" /usr/local/bin/ghdl > /dev/null
@@ -80,15 +108,31 @@ function installDependency
     
     echo "Installing flex.................................."
     sudo apt-get install -y flex
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe flex dependency couldn't install.\nKindly resolve above APT repository error and try again."
+        exit 1
+    fi
     echo "Installing bison................................."
     sudo apt-get install -y bison
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe bison dependency couldn't be install.\nKindly resolve above APT repository error and try again."
+        exit 1
+    fi
 
     # Specific dependency for nvidia graphic cards
     echo "Installing graphics dependency for ngspice souce build"
     echo "Installing libxaw7................................"
     sudo apt-get install libxaw7
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe libxaw7 graphics dependency couldn't be install.\nKindly resolve above APT repository error and try again."
+        exit 1
+    fi
     echo "Installing libxaw7-dev............................"
     sudo apt-get install libxaw7-dev
+    if [ $? -ne 0 ]; then
+        echo -e "\n\n\nThe libxaw7-dev graphics dependency couldn't be install.\nKindly resolve above APT repository error and try again."
+        exit 1
+    fi
 }
 
 
